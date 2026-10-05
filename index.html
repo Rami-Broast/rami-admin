@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Without this the browser requests /favicon.ico and 404s on every load;
+         the tab also showed a blank icon, which reads as broken in a demo. -->
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="/icon-192.png" sizes="192x192" type="image/png" />
+
+    <!-- Installable as a desktop app. The manifest carries the icons and the
+         standalone display mode; `src/pwa.ts` registers the service worker
+         Chrome requires before it will offer "Install". -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#752E2A" />
+
+    <!-- iOS ignores the manifest for "Add to Home Screen" and reads these. -->
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Admin" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+    <title>رامي — Admin</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
