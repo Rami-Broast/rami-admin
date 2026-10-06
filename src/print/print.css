@@ -1,0 +1,187 @@
+/**
+ * Print styles for the admin panel.
+ *
+ * The printable document is rendered into `.print-root`, a node that is hidden
+ * on screen and is the *only* thing visible on paper. The app's own chrome —
+ * nav, filters, buttons — is hidden wholesale rather than tweaked, because a
+ * report that prints with a sidebar and a "Refresh" button down the side is not
+ * a document anyone files.
+ */
+
+.print-root {
+  display: none;
+}
+
+@media print {
+  /* Hide the application, show the document. */
+  body > #root {
+    display: none !important;
+  }
+
+  .print-root {
+    display: block !important;
+    position: static;
+    color: #000;
+    background: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    font-size: 11pt;
+    line-height: 1.4;
+  }
+
+  @page {
+    size: A4;
+    margin: 14mm 12mm;
+  }
+
+  .print-doc__logo {
+    text-align: center;
+    margin-bottom: 4mm;
+  }
+
+  .print-doc__logo img {
+    max-width: 60mm;
+    max-height: 24mm;
+    object-fit: contain;
+  }
+
+  .print-doc__title {
+    margin: 0;
+    font-size: 18pt;
+  }
+
+  .print-doc__subtitle {
+    margin: 2mm 0 0;
+    font-size: 11pt;
+    color: #444;
+  }
+
+  .print-doc__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2mm 8mm;
+    margin: 4mm 0 6mm;
+    padding-bottom: 3mm;
+    border-bottom: 1px solid #000;
+    font-size: 9.5pt;
+  }
+
+  .print-doc__meta dt {
+    color: #555;
+    margin: 0;
+  }
+
+  .print-doc__meta dd {
+    margin: 0;
+    font-weight: 600;
+  }
+
+  .print-doc__section {
+    margin-bottom: 6mm;
+    /* Keep a heading with its table rather than orphaned at a page foot. */
+    break-inside: auto;
+  }
+
+  .print-doc__heading {
+    margin: 0 0 2mm;
+    font-size: 12pt;
+    break-after: avoid;
+  }
+
+  .print-doc__table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10pt;
+  }
+
+  .print-doc__table th,
+  .print-doc__table td {
+    border-bottom: 0.5pt solid #bbb;
+    padding: 1.6mm 2mm;
+    text-align: left;
+    vertical-align: top;
+    /* Add-ons are newline-separated inside one cell. */
+    white-space: pre-line;
+  }
+
+  .print-doc__table th {
+    border-bottom: 1pt solid #000;
+    font-size: 9.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .print-doc__table .num {
+    text-align: right;
+    /* Tabular figures so columns of money line up on the decimal. */
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .print-doc__table tr {
+    break-inside: avoid;
+  }
+
+  /* Repeat headers when a long table runs across pages. */
+  .print-doc__table thead {
+    display: table-header-group;
+  }
+
+  .print-doc__totals td {
+    border-top: 1pt solid #000;
+    border-bottom: none;
+    font-weight: 700;
+  }
+
+  .print-doc__kv {
+    width: 100%;
+    max-width: 110mm;
+    border-collapse: collapse;
+    font-size: 10.5pt;
+  }
+
+  .print-doc__kv td {
+    padding: 1.4mm 0;
+    border-bottom: 0.5pt dotted #ccc;
+  }
+
+  .print-doc__kv td:last-child {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .print-doc__kv tr.strong td {
+    border-top: 1pt solid #000;
+    border-bottom: none;
+    font-weight: 700;
+    font-size: 11.5pt;
+  }
+
+  .print-doc__note {
+    margin: 0;
+    padding: 2mm 3mm;
+    border-left: 2pt solid #000;
+    font-size: 10pt;
+  }
+
+  .print-doc__empty {
+    margin: 0;
+    color: #555;
+    font-style: italic;
+    font-size: 10pt;
+  }
+
+  .print-doc__footnote {
+    margin-top: 8mm;
+    padding-top: 3mm;
+    border-top: 0.5pt solid #999;
+    color: #333;
+    font-size: 9pt;
+  }
+
+  .print-doc__generated {
+    margin-top: 6mm;
+    text-align: center;
+    color: #555;
+    font-size: 8.5pt;
+  }
+}

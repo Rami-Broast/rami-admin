@@ -1,0 +1,71 @@
+/* Rami Broast admin — brand + motion tokens as CSS variables.
+   Colours sampled from the logo; durations/easings mirror the motion system. */
+:root {
+  /* --magenta keeps its name for the many var(--magenta) references, but
+     carries the Rami Broast brand maroon sampled from the logo. */
+  --magenta: #752E2A;
+  --gold: #F6D556;
+  --orange: #F47C20;
+  --blue: #2E63A6;
+  --bg: #FBF6F1;
+  --surface: #FFFFFF;
+  --surface-alt: #F4EDE7;
+  --border: #E7DCD3;
+  --text: #1E1A1C;
+  --muted: #6E6167;
+  --success: #2E9E5B;
+  --danger: #D6453B;
+  --warning: #F47C20;
+  --radius: 12px;
+  --dur-fast: 120ms;
+  --dur-normal: 220ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+}
+
+[data-theme="dark"] {
+  --bg: #121015;
+  --surface: #1E1A1F;
+  --surface-alt: #2A252D;
+  --border: #3A3340;
+  --text: #F0ECF0;
+  --muted: #A89DA5;
+  --success: #3BBF6E;
+  --danger: #F05A50;
+  --warning: #F59A42;
+  --blue: #5B9AE8;
+}
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; margin: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+a { color: var(--blue); text-decoration: none; }
+button { font: inherit; cursor: pointer; }
+button:disabled { opacity: 0.55; cursor: default; }
+input, select {
+  font: inherit; padding: 10px 12px; border: 1px solid var(--border);
+  border-radius: var(--radius); background: var(--surface); color: var(--text); width: 100%;
+}
+/* A checkbox is not a text field: `width: 100%` above stretches one across
+   whatever row it sits in, so its label is squeezed into a column two words
+   wide and wraps. Every checkbox in the app inherited that. */
+input[type="checkbox"], input[type="radio"] {
+  width: auto; padding: 0; flex: 0 0 auto;
+}
+.card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 16px;
+}
+.btn {
+  background: var(--magenta); color: #fff; border: none; border-radius: 999px;
+  padding: 10px 18px; font-weight: 700; transition: filter var(--dur-fast) var(--ease-standard);
+}
+.btn:hover:not(:disabled) { filter: brightness(1.05); }
+.btn-ghost { background: transparent; color: var(--blue); border: 1px solid var(--border); }
+.chip { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 12px; font-weight: 700; color: #fff; }
+.muted { color: var(--muted); }
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
